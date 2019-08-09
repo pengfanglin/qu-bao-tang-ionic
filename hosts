@@ -1,0 +1,39 @@
+# Copyright (c) 1993-2009 Microsoft Corp.
+#
+# This is a sample HOSTS file used by Microsoft TCP/IP for Windows.
+#
+# This file contains the mappings of IP addresses to host names. Each
+# entry should be kept on an individual line. The IP address should
+# be placed in the first column followed by the corresponding host name.
+# The IP address and the host name should be separated by at least one
+# space.
+#
+# Additionally, comments (such as these) may be inserted on individual
+# lines or following the machine name denoted by a '#' symbol.
+#
+# For example:
+#
+#      102.54.94.97     rhino.acme.com          # source server
+#       38.25.63.10     x.acme.com              # x client host
+
+# localhost name resolution is handled within DNS itself.
+#	127.0.0.1       localhost
+#	::1             localhost
+192.168.10.223 ci.shebaotong.com
+192.168.10.223 cf.shebaotong.com
+192.168.10.223 jira.shebaotong.com
+192.168.10.223 daily.midware.shebaotong.com
+192.168.10.223 crowd.shebaotong.com
+192.168.10.210 deploy.shebaotong.com
+192.168.10.223 code.shebaotong.com
+127.0.0.1 activate.navicat.com
+
+10.110.2.70 gitlab.kydof.com
+10.110.2.70 test.kydof.com
+10.110.2.70 jenkins.kydof.com
+10.110.2.70 image.test.kydof.com
+10.110.2.70 nacos.test.kydof.com
+10.110.2.70 doc.test.kydof.com
+10.110.2.70 dev.kydof.com
+10.110.2.70 nacos.dev.kydof.com
+10.110.2.70 redis.redis-p-j4lbl
