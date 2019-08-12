@@ -1,141 +1,311 @@
 <template>
-  <div class="layout_root">
-    <router-view/>
+  <div class="layout-root">
+    <router-view></router-view>
   </div>
 </template>
 <script type="text/ecmascript-6">
-  export default {
-
-  }
+  export default {}
 </script>
 <style lang="less">
-  html{
-    height:100%;
+  html {
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%
   }
-  body {
-    font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
-    font-size: 16px;
-    color: #666;
-    background: #eee;
-    height:100%;
-  }
-  html, body, div, span, applet, object, iframe,
-  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-  a, abbr, acronym, address, big, cite, code,
-  del, dfn, em, img, ins, kbd, q, s, samp,
-  small, strike, strong, sub, sup, tt, var,
-  b, u, i, center,
-  dl, dt, dd, ol, ul, li,
-  fieldset, form, label, legend,
-  table, caption, tbody, tfoot, thead, tr, th, td,
-  article, aside, canvas, details, embed,
-  figure, figcaption, footer, header, hgroup,
-  menu, nav, output, ruby, section, summary,
-  time, mark, audio, video {
+
+  html, body {
+    background: #FFF;
+    position: relative;
+    width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
-    font: inherit;
   }
-  article, aside, details, figcaption, figure,
-  footer, header, hgroup, menu, nav, section {
-    display: block;
-  }
-  ol, ul {
-    list-style: none;
-  }
-  table {
-    border-collapse: collapse;
-    border-spacing: 0;
-  }
-  a {
-    color: inherit;
-    text-decoration: none;
-    user-select: none;
-  }
-  .splitter{
-    width:100%;
-    text-align: center;
-    color:#fff;
-    border-radius: 5px;
-    font-size: 20px;
-    background-image: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(64,158,255, 0.8)), to(rgba(108, 191, 255, 0.9)));
-  }
-  .layout_root{
+
+
+  .layout-root {
+    background: #fff;
     height:100%;
-  }
-  //列表组件搜索域
-  .search_content{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-flow: row wrap;
-    >*{
-      margin:10px 0;
+    h1, h2, h3, h4, h5, h6, hr, p, iframe,div,
+    dl, dt, dd, ul, ol, li, pre, form, button, input,
+    textarea, th, td, fieldset {
+      margin: 0;
+      padding: 0;
+    }
+    h1, h2, h3, h4, h5, h6,p,ol, dl,input, button, textarea, select, optgroup,
+    option,span{
+      font-size: 0.28rem;
+      font-family: inherit;
+      font-style: inherit;
+      font-weight: inherit;
+      overflow: hidden;
+    }
+    ul, ol, dl {
+      list-style-type: none;
+    }
+
+    input, button {
+      overflow: visible;
+      vertical-align: middle;
+      outline: none;
+    }
+
+    button, input {
+      border: none;
+    }
+
+    body, th, td, button, input, select,
+    textarea {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    th, td, button, input,
+    select, textarea {
+      font-family: "Microsoft Yahei", "Hiragino Sans GB", "Helvetica Neue", Helvetica, tahoma, arial, Verdana, sans-serif, "WenQuanYi Micro Hei", "\5B8B\4F53";
+    }
+
+    div, p {
+      word-wrap: break-word;
+    }
+    div{
+      font-size:0.3rem;
+    }
+    a, area {
+      outline: none;
+    }
+
+    a {
+      text-decoration: none;
+      color:#000;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      outline: none;
+      color: #333;
+    }
+
+    a:focus {
+      outline: none;
+    }
+
+    a:hover, a:active {
+      outline: none;
+      text-decoration: none;
+    }
+
+    :focus {
+      outline: none;
+    }
+
+    sub, sup {
+      vertical-align: baseline;
+    }
+
+    input:focus {
+      border: none;
+    }
+
+    img {
+      border: 0;
+    }
+    /*HTML5 reset*/
+    header, footer, section, aside, details,
+    menu, article, section, nav, address,
+    hgroup, figure, figcaption, legend {
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
+
+    time {
+      display: inline;
+    }
+
+    audio, canvas, video {
+      display: inline-block;
+      *display: inline;
+      *zoom: 1
+    }
+
+    audio:not([controls]) {
+      display: none;
+    }
+
+    svg:not(:root) {
+      overflow: hidden;
+    }
+
+    fieldset {
+      border-width: 0;
+      padding: 0.35rem 0.625rem 0.75rem;
+      margin: 0 2px;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+      height: auto;
+    }
+
+    input[type="search"] {
+      -webkit-appearance: textfield; /* 1 */
+      -moz-box-sizing: content-box;
+      -webkit-box-sizing: content-box; /* 2 */
+      box-sizing: content-box;
+    }
+
+    input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+      -webkit-appearance: none;
+    }
+
+    input::-ms-clear {
+      display: none;
+    }
+
+    textarea {
+      resize: none;
+    }
+
+    * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    /*更改文本框提示文字的颜色*/
+
+    input:-ms-input-placeholder {
+      color: #b7b5b5;
+    }
+
+    input::-webkit-input-placeholder {
+      color: #b7b5b5;
+    }
+
+    /*去掉苹果对textarea的默认样式*/
+    textarea, input {
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+
+    /*清除a,button,input手机端的点击效果*/
+    a, button, input {
+      -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+    }
+
+    /*将设备自动添加的播放按钮隐藏*/
+    video {
+      width: 100%;
+      height: 100%;
+      background: #000;
+    }
+
+    text:hover {
+      border: none;
+    }
+
+    input {
+      outline: medium;
+    }
+
+    /*清除滚动条，只支持移动端*/
+    #exhibition::-webkit-scrollbar {
+      display: none;
+    }
+
+    select::-ms-expand {
+      display: none;
     }
   }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
   /**
   公共样式
    */
-  .box_center{
+  .box-center{
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     justify-content: center;
   }
-  .box_center_column{
+  .box-center-column{
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
   }
-  .box_between{
+  .box-between{
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-between;
   }
-  .box_between_column{
+  .box-between-column{
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
   }
-  .box_start{
+  .box-start{
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     justify-content: flex-start;
   }
-  .box_start_column{
+  .box-start-column{
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
   }
-  .box_end{
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: flex-end;
-  }
-  .box_end_column{
+  .box-end{
+     display: flex;
+     flex-flow: row nowrap;
+     align-items: center;
+     justify-content: flex-end;
+   }
+  .box-end-column{
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-end;
   }
-  .width_all{
+  .width-all{
     width:100%;
+  }
+  .theme{
+    background: #329ff9;
+  }
+  .back_white{
+    background: url("../../assets/images/back_white.png") top center no-repeat;
+    background-size:cover;
+    width:0.5rem;
+    height:0.5rem;
+  }
+  .back_black{
+    background: url("../../assets/images/back_black.png") top center no-repeat;
+    background-size:cover;
+    width:0.5rem;
+    height:0.5rem;
+  }
+  .img{
+    background: center center no-repeat;
+    background-size:cover;
+  }
+  .hover{
+    -webkit-tap-highlight-color:transparent;
   }
   .shrink{
     flex-shrink: 0;
   }
-  .center{
-    align-items: center;
-    text-align: center;
-  }
   .icon{
     background: center center no-repeat;
     background-size:cover;
+    width:0.5rem;
+    height:0.5rem;
   }
-  .theme{
-    background-image: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(64,158,255, 0.8)), to(rgba(108, 191, 255, 0.9)));
+  .center{
+    align-items: center;
+    text-align: center;
   }
 </style>

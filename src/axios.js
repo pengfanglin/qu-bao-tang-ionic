@@ -1,18 +1,10 @@
 import Axios from 'axios'
 
-// 开发环境
-// let uploadPath = 'http://test.kydof.com/upload/image';
-// let apiUrl = process.env.NODE_ENV === 'development' ? 'http://doc.test.kydof.com/' : 'http://127.0.0.1:8080/';
-
-//预发布环境
-// let uploadPath = 'http://testadmin.renzhichu.cn/api/upload/image/';
-// let apiUrl = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:8080/' : 'http://testadmin.renzhichu.cn/api/';
-
 //生产环境
-let uploadPath = 'http://app.renzhichu.cn/upload/image';
-let apiUrl = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:8080/' : 'http://admin.renzhichu.cn/api/';
 
-let imgUrl = process.env.NODE_ENV === 'development' ? 'http://image.static.renzhichu.cn/' : 'http://image.static.renzhichu.cn/';
+let apiUrl = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:8080/' : 'http://qbt.renzhichu.cn/api/';
+let uploadPath = apiUrl + 'others/uploadFiles';
+let imgUrl = apiUrl;
 
 //响应时间
 Axios.defaults.timeout = 3000;

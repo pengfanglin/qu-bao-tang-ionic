@@ -1,73 +1,67 @@
 <template>
-  <div class="top_root theme">
-    <div class="top_left">
-      <p>后台模板</p>
-    </div>
-    <div class="top_right box_center">
-      <p class="username" @click="userInfo">{{systemAccount.username}}</p>
-      <img class="icon" :src="homeUrl+systemAccount.headImg" @error="imgError">
-      <img class="icon" :src="require('../../assets/icon/exit.png')" @click="exit">
+  <div class="width-all">
+    <div class="top-root box-between width-all" :class="back=='black'?'':'theme'">
+      <div class="top_left" :class="back=='no'?'no_back':back=='black'?'back_black':'back_white'" @click="goBack"></div>
+      <div class="top_center" :style="back=='black'?'color:#000;':'color:#fff;'">{{center}}</div>
+      <div class="top_right" @click="rightClick">
+        <slot>
+          <div class="slot"/>
+        </slot>
+      </div>
     </div>
   </div>
 </template>
 <script type="text/ecmascript-6">
-  export default {
-    data() {
-      return {
-        systemAccount: this.$store.getters.systemAccount,
-        mouse: false
-      }
-    },
-    methods: {
-      imgError(e) {
-        e.target.src = this.defaultImg;
-      },
-      userInfo() {
-        this.$router.push('/user_info');
-      },
-      exit() {
-        sessionStorage.clear();
-        this.$router.push('/login');
+    export default {
+        props:{
+          back:{
+            type:String,
+            default:'white'
+          },
+          center:{
+            type:String,
+            default:''
+          },
+          click:{
+            type:Boolean,
+            default:true
+          }
+        },
+      methods:{
+        goBack() {
+          if(this.click){
+            this.$router.back();
+          }else{
+            this.$emit('click');
+          }
+        },
+        rightClick(){
+          this.$emit('rightClick');
+        }
       }
     }
-  }
 </script>
-<style scoped lang="less">
-  .top_root {
-    box-shadow: 30px 5px 30px #409EFF;
-    height: 40px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    p{
-      color: #fff;
-      line-height: 40px;
+<style lang="less" scoped>
+  .top-root {
+    height: 1rem;
+    flex-shrink: 0;
+    .no_back{
+      background-size:cover;
+      width:0.5rem;
+      height:0.5rem;
     }
     .top_left {
-      float: left;
-      >p{
-        margin-left: 50px;
-      }
+      margin-left: 0.2rem;
+    }
+    .top_center {
+      font-size: 0.35rem;
+      color: #fff;
     }
     .top_right {
-      display: flex;
-      float: right;
-      margin-right: 30px;
-      height:40px;
-      >img:nth-child(2) {
-        width: 25px;
-        height: 25px;
-        border-radius: 15px;
-        margin: 0 10px;
-      }
-      >img:nth-child(3) {
-        width: 25px;
-        height: 25px;
-        border-radius: 15px;
-      }
-      .username{
-        cursor: pointer;
+      margin-right: 0.3rem;
+      .slot {
+        width: 0.5rem;
+        height: 0.5rem;
       }
     }
   }

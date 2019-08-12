@@ -1,91 +1,136 @@
 <template>
-  <div class="root box_start" v-if="!hide">
-    <p :class="isEmpty(title)?'':'title'">{{title}}</p>
-    <el-input
-      v-model="tempValue"
-      @change="(val)=>$emit('input',val)"
-      clearable
-      :type="type"
-      :placeholder="placeholder" :disabled="disable"
-      :maxlength="type==='text'?max:100"
-      :style="options"
-      :size="size"
-    ></el-input>
+  <div>
+    <div  class="send-code" v-if="type=='code'">
+      <div :style="buildStyle" class="left">
+        <input type="text" placeholder="请输入验证码" v-model="value" maxlength="6" class="input">
+      </div>
+      <my-code class="code" @sendCode="sendCode" :type="code" :mobile="mobile"></my-code>
+    </div>
+    <div class="input-root" :style="buildStyle" v-else="">
+      <input :type="type" :placeholder="placeholder" v-model="value" :maxlength="max" :minlength="min" ref="inputDiv" class="input">
+      <div class="phone img" v-if="type=='phone'"/>
+      <div class="eye img" v-if="type=='password'" @click="eye($event)"/>
+    </div>
   </div>
 </template>
 <script type="text/ecmascript-6">
-  /**
-   * 文本框组件
-   * type:文本框类型 textarea：文本域 text:文本框
-   * title:组件左侧显示的文字
-   * value：组件的初始值
-   * disable:为true时禁用组件
-   * options:对象，定义文本框css属性：{'width':'200px','height':'60px'}
-   * hide：为true时隐藏
-   * placeholder:文本框的默认提示内容（输入内容后自动消失）
-   * max:最大输入长度
-   * size:组件大小
-   */
   export default {
     props: {
-      type: {
-        type: String,
-        default: 'text'
-      },
-      title: {
-        type: String,
-        default: ''
-      },
-      value: {
-        type: null,
-        default: ''
-      },
-      disable: {
-        type: Boolean,
-        default: false
-      },
-      options: {
-        type: Object,
-        default: function () {
-          return {width:'250px'};
-        }
-      },
-      hide: {
-        type: Boolean,
-        default: false
-      },
       placeholder: {
         type: String,
         default: ''
       },
+      initValue: {
+        type: String,
+        default: ''
+      },
+      type: {
+        type: String,
+        default: 'text'
+      },
       max: {
         type: Number,
-        default: 50
+        default: 20
       },
-      size: {
+      min: {
+        type: Number,
+        default: 0
+      },
+      bgColor: {
         type: String,
-        default: 'medium'
+        default: '#FFF'
+      },
+      mobile:{
+        type: String,
+        default: ''
+      },
+      code:{
+        type: String,
+        default: ''
       }
     },
     data() {
       return {
-        tempValue: this.value
+        value: this.initValue,
+      }
+    },
+    beforeMount(){
+      this.$emit('input',this.value);
+    },
+    methods: {
+      eye(event) {
+        event.target.style.backgroundImage = this.$refs.inputDiv.type == 'password' ? require('../../assets/images/eye_open.png') : require('../../assets/images/eye_close.png');
+        this.$refs.inputDiv.type = this.$refs.inputDiv.type == 'password' ? 'text' : 'password';
+      },
+      sendCode(data) {
+        this.$emit('sendCode',data);
+      },
+    },
+    computed: {
+      buildStyle() {
+        return {
+          background: this.bgColor
+        }
       }
     },
     watch:{
       value(){
-        this.tempValue=this.value;
+        this.$emit('input',this.value);
+      },
+      initValue(){
+        this.$emit('input',this.value);
       }
     }
   }
 </script>
-<style scoped lang="less">
-  .root {
-    .title {
-      width: 100px;
-      font-size: 18px;
-      text-align: right;
-      margin-right: 10px;
+<style lang="less" scoped>
+  .input-root {
+    height: 0.9rem;
+    border-radius: 0.1rem;
+    padding: 0 0.2rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    .input {
+      color: #777;
+      font-size: 0.3rem;
+      width: 90%;
+      height: 100%;
+    }
+    .phone {
+      width: 0.5rem;
+      height: 0.7rem;
+      background-image: url(../../assets/images/phone.png);
+    }
+    .eye {
+      width: 0.5rem;
+      height: 0.6rem;
+      background-image: url(../../assets/images/eye_close.png);
+    }
+  }
+
+  .send-code {
+    height: 0.9rem;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    .left{
+      height: 100%;
+      border-radius: 0.1rem;
+      padding-left:0.2rem;
+      width:100%;
+      .input {
+        color: #777;
+        font-size: 0.3rem;
+        height: 100%;
+      }
+    }
+    .code {
+      flex-shrink: 0;
+      display: inline-block;
+      margin-left: 0.5rem;
     }
   }
 </style>
